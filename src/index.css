@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-eng-bg: #080c14;
+  --color-eng-navy: #0b0f17;
+  --color-eng-surface: #0f172a;
+  --color-eng-panel: #121b2d;
+  --color-eng-panel-hover: #17233b;
+
+  --color-eng-border: #1e293b;
+  --color-eng-border-bright: #334155;
+  --color-eng-border-cyan: rgba(0, 240, 255, 0.3);
+
+  --color-eng-cyan: #00f0ff;
+  --color-eng-cyan-dim: #0284c7;
+  --color-eng-cyan-glow: rgba(0, 240, 255, 0.12);
+
+  --color-eng-blue: #2563eb;
+  --color-eng-blue-dim: #1d4ed8;
+
+  --color-eng-green: #10b981;
+  --color-eng-green-glow: rgba(16, 185, 129, 0.15);
+
+  --color-eng-amber: #f59e0b;
+  --color-eng-amber-glow: rgba(245, 158, 11, 0.15);
+
+  --color-eng-text-white: #ffffff;
+  --color-eng-text-light: #cbd5e1;
+  --color-eng-text-muted: #94a3b8;
+  --color-eng-text-dim: #64748b;
+}
+
+:root {
+  color-scheme: dark;
+  background-color: #080c14;
+  color: #cbd5e1;
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #080c14;
+  color: #cbd5e1;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar for Engineering UI */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080c14;
+  border-left: 1px solid #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}
+
+/* Focus Visible Accessibility */
+*:focus-visible {
+  outline: 2px solid #00f0ff !important;
+  outline-offset: 2px !important;
+}
+
+/* Engineering Technical Grid Utilities */
+.bg-tech-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(0, 240, 255, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-radial-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.06) 0%, transparent 70%);
+}
+
+/* PCB Trace & Corner Notches */
+.corner-notch {
+  position: relative;
+}
+.corner-notch::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #00f0ff;
+  border-left: 2px solid #00f0ff;
+}
+.corner-notch::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #00f0ff;
+  border-right: 2px solid #00f0ff;
+}
+
+/* Animations & Transitions */
+@keyframes signalPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.96);
+  }
+}
+
+.animate-signal-pulse {
+  animation: signalPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes dataFlow {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-data-flow {
+  stroke-dasharray: 4, 8;
+  animation: dataFlow 1.2s linear infinite;
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
