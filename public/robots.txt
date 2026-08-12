@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ilyesgharbi.dev/sitemap.xml
+Sitemap: https://github.com/Ilyes103/ilyes-gharbi-portfolio/sitemap.xml
