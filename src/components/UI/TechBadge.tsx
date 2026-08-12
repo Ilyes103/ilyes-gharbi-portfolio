@@ -10,7 +10,7 @@ export interface TechBadgeProps {
   className?: string;
 }
 
-export const TechBadge: React.FC<TechBadgeProps> = ({
+export const TechBadge: React.FC<TechBadgeProps> = React.memo(({
   children,
   variant = 'default',
   size = 'md',
@@ -58,4 +58,4 @@ export const TechBadge: React.FC<TechBadgeProps> = ({
       {showBrackets && <span className="text-slate-500 ml-1 opacity-70">]</span>}
     </span>
   );
-};
+});

@@ -7,17 +7,20 @@ import { StatusDot } from '../UI/StatusDot';
 import { TelemetryLabel } from '../UI/TelemetryLabel';
 import { DataFlowConnector } from '../UI/DataFlowConnector';
 import { techStackCategories, architectureFlow } from '../../data/techStack';
+import { RevealOnScroll } from '../motion/RevealOnScroll';
 
 export const TechStackSection: React.FC = () => {
   return (
     <section id="stack" className="py-16 sm:py-24 border-t border-[#1e293b] relative z-10">
       <Container size="wide">
-        <SectionHeader
-          number="04"
-          category="TECHNOLOGY STACK"
-          title="Technical Stack"
-          subtitle="Tools and technologies I use to build, connect, test, and monitor intelligent industrial systems."
-        />
+        <RevealOnScroll>
+          <SectionHeader
+            number="04"
+            category="TECHNOLOGY STACK"
+            title="Technical Stack"
+            subtitle="Tools and technologies I use to build, connect, test, and monitor intelligent industrial systems."
+          />
+        </RevealOnScroll>
 
         {/* Technology Relationship Architecture Strip */}
         <div className="mb-12 p-5 bg-[#0f172a] border border-[#1e293b] rounded-md">
@@ -61,50 +64,51 @@ export const TechStackSection: React.FC = () => {
 
         {/* Structured Engineering Technology Matrix Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {techStackCategories.map((cat) => (
-            <Card
-              key={cat.id}
-              variant="interactive"
-              className="flex flex-col justify-between h-full bg-[#0f172a] border-[#1e293b] p-5 sm:p-6"
-            >
-              <div>
-                {/* Category Header */}
-                <CardHeader className="mb-4 border-b border-slate-800 pb-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-cyan-400 font-bold tracking-widest">
-                      STACK_{cat.index}
-                    </span>
-                    <StatusDot status="green" label="ACTIVE" size="sm" />
-                  </div>
-                  <CardTitle className="text-base sm:text-lg text-white mt-1">
-                    {cat.title}
-                  </CardTitle>
-                </CardHeader>
+          {techStackCategories.map((cat, idx) => (
+            <RevealOnScroll key={cat.id} delay={100 + idx * 60}>
+              <Card
+                variant="interactive"
+                className="flex flex-col justify-between h-full bg-[#0f172a] border-[#1e293b] p-5 sm:p-6 hover:-translate-y-1 transition-all duration-300"
+              >
+                <div>
+                  {/* Category Header */}
+                  <CardHeader className="mb-4 border-b border-slate-800 pb-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-cyan-400 font-bold tracking-widest">
+                        STACK_{cat.index}
+                      </span>
+                      <StatusDot status="green" label="ACTIVE" size="sm" />
+                    </div>
+                    <CardTitle className="text-base sm:text-lg text-white mt-1">
+                      {cat.title}
+                    </CardTitle>
+                  </CardHeader>
 
-                {/* Technologies Badges */}
-                <CardBody className="mb-5 space-y-0">
-                  <div className="flex flex-wrap gap-2">
-                    {cat.technologies.map((tech) => (
-                      <TechBadge
-                        key={tech}
-                        variant={cat.variant}
-                        size="md"
-                        className="hover:-translate-y-0.5 transition-transform duration-200 cursor-default"
-                      >
-                        {tech}
-                      </TechBadge>
-                    ))}
-                  </div>
-                </CardBody>
-              </div>
+                  {/* Technologies Badges */}
+                  <CardBody className="mb-5 space-y-0">
+                    <div className="flex flex-wrap gap-2">
+                      {cat.technologies.map((tech) => (
+                        <TechBadge
+                          key={tech}
+                          variant={cat.variant}
+                          size="md"
+                          className="hover:-translate-y-0.5 transition-transform duration-200 cursor-default"
+                        >
+                          {tech}
+                        </TechBadge>
+                      ))}
+                    </div>
+                  </CardBody>
+                </div>
 
-              {/* Technical Context Footer */}
-              <CardFooter className="pt-3 mt-auto border-t border-slate-800/80 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-slate-400 tracking-wide">
-                  // {cat.contextualLabel}
-                </span>
-              </CardFooter>
-            </Card>
+                {/* Technical Context Footer */}
+                <CardFooter className="pt-3 mt-auto border-t border-slate-800/80 flex items-center justify-between">
+                  <span className="font-mono text-[11px] text-slate-400 tracking-wide">
+                    // {cat.contextualLabel}
+                  </span>
+                </CardFooter>
+              </Card>
+            </RevealOnScroll>
           ))}
         </div>
       </Container>

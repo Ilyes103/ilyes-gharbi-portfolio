@@ -18,26 +18,27 @@ export const EducationSection: React.FC = () => {
         </RevealOnScroll>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {educationData.map((edu) => (
-            <CircuitBorder key={edu.id} glow className="flex flex-col justify-between h-full">
-              <div>
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-slate-900 border border-slate-700 text-cyan-400">
-                      <GraduationCap className="w-5 h-5" />
+          {educationData.map((edu, idx) => (
+            <RevealOnScroll key={edu.id} delay={100 + idx * 100}>
+              <CircuitBorder glow className="flex flex-col justify-between h-full hover:-translate-y-1 transition-all duration-300">
+                <div>
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-slate-900 border border-slate-700 text-cyan-400">
+                        <GraduationCap className="w-5 h-5" />
+                      </div>
+                      <span className="font-mono text-xs text-cyan-400 font-bold">
+                        [{edu.period}]
+                      </span>
                     </div>
-                    <span className="font-mono text-xs text-cyan-400 font-bold">
-                      [{edu.period}]
-                    </span>
+                    <span className="font-mono text-xs text-slate-400">{edu.location}</span>
                   </div>
-                  <span className="font-mono text-xs text-slate-400">{edu.location}</span>
-                </div>
 
-                <h3 className="text-xl font-bold text-slate-100 font-sans mb-1">
-                  {edu.degree}
-                </h3>
-                <p className="text-sm font-sans text-cyan-400 font-semibold mb-2">
-                  {edu.specialization}
+                  <h3 className="text-xl font-bold text-slate-100 font-sans mb-1">
+                    {edu.degree}
+                  </h3>
+                  <p className="text-sm font-sans text-cyan-400 font-semibold mb-2">
+                    {edu.specialization}
                 </p>
                 <div className="text-xs font-mono text-slate-400 mb-4">{edu.institution}</div>
 
@@ -72,6 +73,7 @@ export const EducationSection: React.FC = () => {
                 </ul>
               </div>
             </CircuitBorder>
+          </RevealOnScroll>
           ))}
         </div>
       </div>

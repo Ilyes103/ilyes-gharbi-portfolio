@@ -19,25 +19,26 @@ export const ExperienceSection: React.FC = () => {
         </RevealOnScroll>
 
         <div className="relative border-l-2 border-slate-800 ml-4 md:ml-6 space-y-10">
-          {experienceData.map((exp) => (
-            <div key={exp.id} className="relative pl-6 md:pl-8 group">
-              {/* Timeline Marker Dot */}
-              <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-900 border-2 border-cyan-400 group-hover:bg-cyan-400 transition-colors" />
+          {experienceData.map((exp, idx) => (
+            <RevealOnScroll key={exp.id} delay={100 + idx * 100}>
+              <div className="relative pl-6 md:pl-8 group">
+                {/* Timeline Marker Dot */}
+                <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-900 border-2 border-cyan-400 group-hover:bg-cyan-400 group-hover:scale-125 transition-all duration-300" />
 
-              <CircuitBorder glow className="p-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
-                  <div>
-                    <span className="font-mono text-xs text-cyan-400 bg-cyan-950/60 px-2 py-0.5 border border-cyan-800/60 mb-1 inline-block">
-                      [{exp.type} ENGINEERING]
-                    </span>
-                    <h3 className="text-xl font-bold text-slate-100 font-sans">{exp.role}</h3>
-                    <div className="text-sm font-sans text-slate-300 font-semibold">{exp.company}</div>
-                  </div>
+                <CircuitBorder glow className="p-6 hover:-translate-y-0.5 transition-transform duration-300">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+                    <div>
+                      <span className="font-mono text-xs text-cyan-400 bg-cyan-950/60 px-2 py-0.5 border border-cyan-800/60 mb-1 inline-block">
+                        [{exp.type} ENGINEERING]
+                      </span>
+                      <h3 className="text-xl font-bold text-slate-100 font-sans">{exp.role}</h3>
+                      <div className="text-sm font-sans text-slate-300 font-semibold">{exp.company}</div>
+                    </div>
 
-                  <div className="flex flex-col md:items-end font-mono text-xs text-slate-400 space-y-1">
-                    <div className="flex items-center gap-1.5 text-cyan-400">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>{exp.period}</span>
+                    <div className="flex flex-col md:items-end font-mono text-xs text-slate-400 space-y-1">
+                      <div className="flex items-center gap-1.5 text-cyan-400">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>{exp.period}</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-slate-400">
                       <MapPin className="w-3.5 h-3.5" />
@@ -73,6 +74,7 @@ export const ExperienceSection: React.FC = () => {
                 </div>
               </CircuitBorder>
             </div>
+          </RevealOnScroll>
           ))}
         </div>
       </div>

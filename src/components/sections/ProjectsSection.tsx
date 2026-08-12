@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { SectionHeader } from '../UI/SectionHeader';
 import { Container } from '../layout/Container';
 import { Card, CardHeader, CardTitle, CardBody, CardFooter } from '../UI/Card';
@@ -8,10 +8,13 @@ import { TelemetryLabel } from '../UI/TelemetryLabel';
 import { CircuitBorder } from '../UI/CircuitBorder';
 import { DataFlowConnector } from '../UI/DataFlowConnector';
 import { Button } from '../UI/Button';
-import { ProjectDetailModal } from '../UI/ProjectDetailModal';
 import { projectsData, type ProjectItem } from '../../data/projects';
 import { Bot, ArrowRight } from 'lucide-react';
 import { RevealOnScroll } from '../motion/RevealOnScroll';
+
+const ProjectDetailModal = lazy(() =>
+  import('../UI/ProjectDetailModal').then((module) => ({ default: module.ProjectDetailModal }))
+);
 
 export const ProjectsSection: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
@@ -228,11 +231,13 @@ export const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Case Study Detail Modal */}
-        <ProjectDetailModal
-          project={selectedProject}
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
+        <Suspense fallback={null}>
+          <ProjectDetailModal
+            project={selectedProject}
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+          />
+        </Suspense>
       </Container>
     </section>
   );
