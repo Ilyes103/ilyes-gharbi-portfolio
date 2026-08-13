@@ -11,7 +11,7 @@ import { RevealOnScroll } from '../motion/RevealOnScroll';
 
 export const TechStackSection: React.FC = () => {
   return (
-    <section id="stack" className="py-16 sm:py-24 border-t border-[#1e293b] relative z-10">
+    <section id="stack" className="py-16 sm:py-24 border-t border-[#1e293b] relative z-10" data-nav-id="skills">
       <Container size="wide">
         <RevealOnScroll>
           <SectionHeader

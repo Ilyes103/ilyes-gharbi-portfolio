@@ -21,8 +21,6 @@ export const FocusSection: React.FC = () => {
 
   return (
     <section id="focus" className="py-16 sm:py-24 border-t border-[#1e293b] relative z-10">
-      {/* Anchor for Navbar #skills navigation link */}
-      <div id="skills" className="h-0 scroll-mt-24 pointer-events-none opacity-0" />
 
       <Container size="wide">
         <RevealOnScroll>

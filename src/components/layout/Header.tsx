@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+
 import { Download, Menu, X } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../UI/Icons';
 import { Button } from '../UI/Button';
@@ -10,6 +11,11 @@ export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  // Ref to suppress scroll-spy briefly after a click so the indicator
+  // doesn't flicker back to the wrong section during smooth-scroll.
+  const clickLockRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isClickLocked = useRef(false);
+
 
   const navItems = useMemo(
     () => [
@@ -27,25 +33,54 @@ export const Header: React.FC = () => {
   );
 
   useEffect(() => {
+    // Build a lookup: DOM element id  →  nav item id
+    // Handles cases where the section id differs from the nav id
+    // (e.g. TechStackSection has id="stack" but nav uses id "skills").
+    const getSectionNavId = (el: HTMLElement): string => {
+      return el.dataset.navId ?? el.id;
+    };
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Section spy for active navigation highlighting
-      const sections = navItems.map((item) => document.getElementById(item.id));
+      // While a click-triggered scroll is in progress, don't override
+      // the active state that was set immediately on click.
+      if (isClickLocked.current) return;
+
+      // Collect all navigable section elements in order.
+      const candidates = navItems
+        .map((item) => {
+          // Primary: element whose data-nav-id matches this nav item
+          const byNavId = document.querySelector<HTMLElement>(`[data-nav-id="${item.id}"]`);
+          // Fallback: element whose DOM id matches this nav item
+          const byDomId = document.getElementById(item.id);
+          return byNavId ?? byDomId;
+        })
+        .filter(Boolean) as HTMLElement[];
+
       const scrollPosition = window.scrollY + 180;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navItems[i].id);
+      for (let i = candidates.length - 1; i >= 0; i--) {
+        const el = candidates[i];
+        if (el.offsetTop <= scrollPosition) {
+          // Resolve the nav id (may differ from DOM id)
+          const navId = getSectionNavId(el);
+          // Find the matching navItem id: prefer data-nav-id, fall back to dom id
+          const matched = navItems.find(
+            (item) => item.id === navId || item.id === el.id
+          );
+          if (matched) setActiveSection(matched.id);
           break;
         }
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    // Run once on mount to set correct initial state (handles /#skills deep links)
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [navItems]);
+
 
   // Lock body scroll & ESC key handling when mobile drawer is open
   useEffect(() => {
@@ -68,11 +103,26 @@ export const Header: React.FC = () => {
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
+    // Immediately mark the clicked section as active so the indicator
+    // moves at once without waiting for the scroll event.
+    setActiveSection(id);
+    // Lock the scroll-spy for 800 ms so smooth-scroll doesn't cause it
+    // to jump back to a partially-visible section mid-animation.
+    isClickLocked.current = true;
+    if (clickLockRef.current) clearTimeout(clickLockRef.current);
+    clickLockRef.current = setTimeout(() => {
+      isClickLocked.current = false;
+    }, 800);
+    // Scroll to the correct DOM element:
+    // For "skills" the section has id="stack", so check data-nav-id first.
+    const byNavId = document.querySelector<HTMLElement>(`[data-nav-id="${id}"]`);
+    const byDomId = document.getElementById(id);
+    const element = byNavId ?? byDomId;
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
 
   const handleCvDownload = (e: React.MouseEvent<HTMLAnchorElement>) => {
     fetch(NAV_CONFIG.cvDownloadPath, { method: 'HEAD' })
