@@ -88,8 +88,8 @@ export const AboutSection: React.FC = () => {
             </RevealOnScroll>
           </div>
 
-          {/* Right Column: Engineering Spectrum Visualization */}
-          <div className="lg:col-span-5">
+          {/* Right Column: Engineering Spectrum Visualization + Contextual Image */}
+          <div className="lg:col-span-5 space-y-4">
             <RevealOnScroll delay={250} direction="left">
               <CircuitBorder glow className="p-5 sm:p-6 bg-[#0f172a] border-[#1e293b]">
                 <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
@@ -126,6 +126,26 @@ export const AboutSection: React.FC = () => {
                   ))}
                 </div>
               </CircuitBorder>
+
+              {/* Embedded electronics contextual image */}
+              <div className="group relative overflow-hidden rounded-xs border border-[#1e293b] hover:border-cyan-500/30 transition-colors duration-300">
+                <div className="aspect-video w-full">
+                  <img
+                    src="/images/about-embedded-electronics.webp"
+                    alt="STM32 PCB with embedded electronics and oscilloscope probe during development"
+                    loading="lazy"
+                    decoding="async"
+                    width="900"
+                    height="506"
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-70 group-hover:opacity-90"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f17]/70 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between">
+                  <span className="font-mono text-[9px] text-cyan-400/60 uppercase tracking-wider">// EMBEDDED SYSTEMS DOMAIN</span>
+                  <span className="font-mono text-[9px] text-slate-600">REF</span>
+                </div>
+              </div>
             </RevealOnScroll>
           </div>
         </div>

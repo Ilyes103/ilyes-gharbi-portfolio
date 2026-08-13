@@ -1,3 +1,8 @@
+export interface ProjectImage {
+  src: string;
+  alt: string;
+}
+
 export interface ProjectItem {
   id: string;
   number: string;
@@ -12,6 +17,7 @@ export interface ProjectItem {
   challenge: string;
   architectureDetails: string;
   approach: string;
+  image?: ProjectImage;
 }
 
 export const projectsData: ProjectItem[] = [
@@ -34,7 +40,11 @@ export const projectsData: ProjectItem[] = [
     overview: 'Final year engineering project conducted at SEBN Jendouba. Developed an autonomous mobile robotics and manipulation system for automated material handling, product storage, and real-time inventory tracking.',
     challenge: 'Integrating spatial perception with LiDAR and embedded vision while achieving reliable robotic arm control for product handling and synchronizing telemetry with a custom mobile supervision app.',
     architectureDetails: 'LiDAR & Embedded Camera → ROS2 Autonomous Navigation Node → Embedded Robotic Arm Motion Controller → MQTT Telemetry Gateway → React Native Mobile Supervision App.',
-    approach: 'Engineered ROS2 nodes for autonomous robot movement, programmed motion control routines for the robotic arm, and built a cross-platform React Native mobile application for real-time supervision and inventory traceability.'
+    approach: 'Engineered ROS2 nodes for autonomous robot movement, programmed motion control routines for the robotic arm, and built a cross-platform React Native mobile application for real-time supervision and inventory traceability.',
+    image: {
+      src: '/images/project-01-amr-robotics.webp',
+      alt: 'Autonomous mobile robot with robotic arm and LiDAR sensor in industrial warehouse environment'
+    }
   },
   {
     id: 'smart-factory-monitoring',
@@ -55,7 +65,11 @@ export const projectsData: ProjectItem[] = [
     overview: 'An Industry 4.0 environmental monitoring solution built to collect and process atmospheric, temperature, humidity, and safety metrics across industrial plant environments.',
     challenge: 'Ensuring continuous non-blocking sensor acquisition on low-cost ESP32 microcontrollers and maintaining low-latency MQTT data publication under industrial conditions.',
     architectureDetails: 'Industrial Environmental Sensor Probe Array → ESP32 Microcontroller (Arduino IDE) → Mosquitto MQTT Broker → Node-RED Logic & Dashboard UI → SCADA Alarm Manager.',
-    approach: 'Implemented robust ADC signal sampling loops on ESP32 microcontrollers, published structured MQTT messages via Mosquitto, and built Node-RED flows for SCADA visualization and real-time alarm threshold alerts.'
+    approach: 'Implemented robust ADC signal sampling loops on ESP32 microcontrollers, published structured MQTT messages via Mosquitto, and built Node-RED flows for SCADA visualization and real-time alarm threshold alerts.',
+    image: {
+      src: '/images/project-02-iot-monitoring.webp',
+      alt: 'ESP32 microcontroller with environmental sensors connected to Node-RED SCADA dashboard on laptop'
+    }
   },
   {
     id: 'steg-gas-station',
@@ -76,7 +90,11 @@ export const projectsData: ProjectItem[] = [
     overview: 'Specialized IoT monitoring setup designed for a STEG gas pressure regulating station to supervise gas distribution pressure, ambient thermal metrics, and safety interlocks.',
     challenge: 'Establishing reliable parameter monitoring for gas pressure regulating equipment with immediate alarm feedback for out-of-spec readings.',
     architectureDetails: 'Gas Pressure Transducers & Temperature Sensors → ESP32 Firmware Node → Mosquitto MQTT Telemetry Queue → Node-RED Flow Engine → Central SCADA Dashboard.',
-    approach: 'Configured embedded ESP32 acquisition code in Arduino IDE, established MQTT communication over Mosquitto brokers, and constructed interactive Node-RED SCADA panels for operators.'
+    approach: 'Configured embedded ESP32 acquisition code in Arduino IDE, established MQTT communication over Mosquitto brokers, and constructed interactive Node-RED SCADA panels for operators.',
+    image: {
+      src: '/images/project-03-gas-station.webp',
+      alt: 'Industrial gas pressure regulating station with pressure gauges, pipes, valves and digital control panel'
+    }
   },
   {
     id: 'cable-harness-optimization',
@@ -97,7 +115,11 @@ export const projectsData: ProjectItem[] = [
     overview: 'Engineering internship initiative at SEBN Jendouba focused on cable harness production environments, analyzing line efficiency, and applying process improvement methodologies.',
     challenge: 'Identifying workflow bottlenecks and defect drivers in high-complexity automotive wiring harness assembly processes.',
     architectureDetails: 'Wire Assembly Stations & Test Rigs → Process Performance Diagnostics → Root Cause Analysis → Workflow Optimization.',
-    approach: 'Utilized systematic problem-solving methods and process improvement frameworks to streamline cable harness assembly steps, reduce assembly error rates, and improve production quality.'
+    approach: 'Utilized systematic problem-solving methods and process improvement frameworks to streamline cable harness assembly steps, reduce assembly error rates, and improve production quality.',
+    image: {
+      src: '/images/project-04-cable-harness.webp',
+      alt: 'Automotive wiring harness assembly station with multi-wire cable bundles and connector systems'
+    }
   }
 ];
 
