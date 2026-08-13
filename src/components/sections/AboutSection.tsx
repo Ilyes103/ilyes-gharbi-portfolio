@@ -68,7 +68,15 @@ export const AboutSection: React.FC = () => {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <TechBadge variant="green">Node-RED Fundamentals</TechBadge>
-                    <TechBadge variant="amber">Six Sigma Yellow Belt</TechBadge>
+                    <a
+                      href="https://www.6sigmastudy.com/certification/verify?type=SSYB&number=1119216"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Verify Six Sigma Yellow Belt certification"
+                      className="rounded-xs focus-visible:outline-2 focus-visible:outline-amber-400 focus-visible:outline-offset-1 hover:opacity-90 transition-opacity"
+                    >
+                      <TechBadge variant="amber">Six Sigma Yellow Belt ↗</TechBadge>
+                    </a>
                     <TechBadge variant="cyan">Process Improvement</TechBadge>
                   </div>
                 </div>
