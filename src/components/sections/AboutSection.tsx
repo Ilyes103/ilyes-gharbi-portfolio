@@ -67,7 +67,15 @@ export const AboutSection: React.FC = () => {
                     // CERTIFICATIONS & METHODOLOGIES:
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <TechBadge variant="green">Node-RED Fundamentals</TechBadge>
+                    <a
+                      href="/certificates/node-red-fundamentals.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="View Node-RED Fundamentals certificate"
+                      className="rounded-xs focus-visible:outline-2 focus-visible:outline-emerald-400 focus-visible:outline-offset-1 hover:opacity-90 transition-opacity"
+                    >
+                      <TechBadge variant="green">Node-RED Fundamentals ↗</TechBadge>
+                    </a>
                     <a
                       href="https://www.6sigmastudy.com/certification/verify?type=SSYB&number=1119216"
                       target="_blank"
