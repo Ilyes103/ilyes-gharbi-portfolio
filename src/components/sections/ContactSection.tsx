@@ -189,7 +189,7 @@ export const ContactSection: React.FC = () => {
                           GITHUB REPOSITORIES
                         </div>
                         <div className="font-sans text-xs font-semibold text-slate-100 group-hover:text-cyan-400 transition-colors truncate">
-                          github.com/ilyes-gharbi
+                          github.com/Ilyes103
                         </div>
                       </div>
                     </Card>

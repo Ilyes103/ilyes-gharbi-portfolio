@@ -37,7 +37,7 @@ export const profileData: ProfileData = {
     email: 'ilyesgharbi104@gmail.com',
     phone: '+216 25435490',
     linkedin: 'https://linkedin.com/in/ilyes-gharbi',
-    github: 'https://github.com/ilyes-gharbi',
+    github: 'https://github.com/Ilyes103',
     location: 'Sousse, Tunisia'
   }
 };

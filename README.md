@@ -47,7 +47,7 @@ Electrical Engineer with hands-on experience in the automotive wiring harness in
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/ilyes-gharbi/portfolio.git
+git clone https://github.com/Ilyes103/ilyes-gharbi-portfolio.git
 cd portfolio
 
 # 2. Install dependencies
@@ -78,7 +78,7 @@ npm run preview
 
 **Ilyes Gharbi**  
 *Electrical Engineer — Embedded Systems & Industrial Automation*  
-- **GitHub**: [github.com/ilyes-gharbi](https://github.com/ilyes-gharbi)  
+- **GitHub**: [github.com/Ilyes103](https://github.com/Ilyes103)  
 - **LinkedIn**: [linkedin.com/in/ilyes-gharbi](https://linkedin.com/in/ilyes-gharbi)  
 - **Email**: [ilyesgharbi104@gmail.com](mailto:ilyesgharbi104@gmail.com)  
 - **Location**: Sousse, Tunisia  
